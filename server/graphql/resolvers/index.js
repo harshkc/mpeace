@@ -35,5 +35,16 @@ module.exports = {
     USER: 'user',
     ADMIN: 'admin',
   },
+  SortByType: {
+    HOT: 'hot',
+    VOTES: 'votes',
+    VIEWS: 'views',
+    NEWEST: 'newest',
+    OLDEST: 'oldest',
+  },
+  VoteType: {
+    UPVOTE: 'upvote',
+    DOWNVOTE: 'downvote',
+  },
   DateTime: GraphQLDateTime,
 };
