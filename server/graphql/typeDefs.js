@@ -11,6 +11,14 @@ module.exports = gql`
     DOWNVOTE
   }
 
+  enum SortByType {
+    HOT
+    VOTES
+    VIEWS
+    NEWEST
+    OLDEST
+  }
+
   scalar DateTime
 
   type QuestionRep {
@@ -118,6 +126,16 @@ module.exports = gql`
     limit: Int!
   }
 
+  type PaginatedQuesList {
+    questions: [QuestionList]!
+    next: NextPrevPage
+    previous: NextPrevPage
+  }
+
+  type Tag {
+    tagName: String!
+    count: Int!
+  }
 
   type Query {
     getQuestions(
@@ -152,5 +170,18 @@ module.exports = gql`
     editAnswer(quesId: ID!, ansId: ID!, body: String!): [Answer!]!
     voteAnswer(quesId: ID!, ansId: ID!, voteType: VoteType!): Answer!
     acceptAnswer(quesId: ID!, ansId: ID!): Question!
+
+    addQuesComment(quesId: ID!, body: String!): [Comment!]!
+    deleteQuesComment(quesId: ID!, commentId: ID!): ID!
+    editQuesComment(quesId: ID!, commentId: ID!, body: String!): [Comment!]!
+
+    addAnsComment(quesId: ID!, ansId: ID!, body: String!): [Comment!]!
+    deleteAnsComment(quesId: ID!, ansId: ID!, commentId: ID!): ID!
+    editAnsComment(
+      quesId: ID!
+      ansId: ID!
+      commentId: ID!
+      body: String!
+    ): [Comment!]!
   }
 `;
