@@ -34,7 +34,6 @@ const MobileUserMenu = ({user, logoutUser}) => {
             src={`https://secure.gravatar.com/avatar/${user.id}?s=164&d=monsterid`}
             className={classes.avatar}
           />
-          <MoreVertIcon color='primary' />
         </IconButton>
       ) : (
         <IconButton onClick={handleOpenMenu} color='primary' className={classes.moreBtn}>
