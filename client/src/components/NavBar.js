@@ -7,20 +7,11 @@ import UserMenuDesktop from "./UserMenuDesktop";
 import SearchBar from "./SearchBar";
 import DarkModeSwitch from "./DarkModeSwitch";
 import {useAuthContext} from "../context/auth";
+import MpeaceLogo from "../svg/mpeace-logo.png";
 
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Link,
-  Button,
-  Container,
-  useMediaQuery,
-  IconButton,
-} from "@material-ui/core";
+import {AppBar, Toolbar, Button, Container, useMediaQuery, IconButton} from "@material-ui/core";
 import {useNavStyles} from "../styles/muiStyles";
 import {useTheme} from "@material-ui/core/styles";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import SearchIcon from "@material-ui/icons/Search";
 
 const NavBar = () => {
@@ -53,11 +44,11 @@ const NavBar = () => {
                 {isMobile && <NavMenuMobile />}
                 {isMobile ? (
                   <IconButton className={classes.logo} component={RouterLink} to='/'>
-                    
+                    <img src={MpeaceLogo} width='40px' alt='mp-logo' />
                   </IconButton>
                 ) : (
                   <Button className={classes.logo} component={RouterLink} to='/' size='large'>
-                    <img src={SofLogo} width='28px' alt='sof-logo' style={{marginRight: "5px"}} />
+                    <img src={MpeaceLogo} width='40px' alt='mp-logo' style={{marginRight: "5px"}} />
                     <strong>M</strong>Peace
                   </Button>
                 )}

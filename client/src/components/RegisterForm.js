@@ -1,79 +1,61 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
-import { REGISTER_USER } from '../graphql/mutations';
-import { useAuthContext } from '../context/auth';
-import { useStateContext } from '../context/state';
-import ErrorMessage from './ErrorMessage';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { getErrorMsg } from '../utils/helperFuncs';
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useMutation} from "@apollo/client";
+import {REGISTER_USER} from "../graphql/mutations";
+import {useAuthContext} from "../context/auth";
+import {useStateContext} from "../context/state";
+import ErrorMessage from "./ErrorMessage";
+import * as yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
+import MpeaceLogo from "../svg/mpeace-logo.png";
+import {getErrorMsg} from "../utils/helperFuncs";
 
-import {
-  TextField,
-  Button,
-  Typography,
-  InputAdornment,
-  IconButton,
-  Link,
-} from '@material-ui/core';
-import { useAuthFormStyles } from '../styles/muiStyles';
-import PersonIcon from '@material-ui/icons/Person';
-import LockIcon from '@material-ui/icons/Lock';
-import EnhancedEncryptionIcon from '@material-ui/icons/EnhancedEncryption';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import {TextField, Button, Typography, InputAdornment, IconButton, Link} from "@material-ui/core";
+import {useAuthFormStyles} from "../styles/muiStyles";
+import PersonIcon from "@material-ui/icons/Person";
+import LockIcon from "@material-ui/icons/Lock";
+import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const validationSchema = yup.object({
   username: yup
     .string()
-    .required('Required')
-    .max(20, 'Must be at most 20 characters')
-    .min(3, 'Must be at least 3 characters')
-    .matches(
-      /^[a-zA-Z0-9-_]*$/,
-      'Only alphanum, dash & underscore characters are allowed'
-    ),
-  password: yup
-    .string()
-    .required('Required')
-    .min(6, 'Must be at least 6 characters'),
-  confirmPassword: yup
-    .string()
-    .required('Required')
-    .min(6, 'Must be at least 6 characters'),
+    .required("Required")
+    .max(20, "Must be at most 20 characters")
+    .min(3, "Must be at least 3 characters")
+    .matches(/^[a-zA-Z0-9-_]*$/, "Only alphanum, dash & underscore characters are allowed"),
+  password: yup.string().required("Required").min(6, "Must be at least 6 characters"),
+  confirmPassword: yup.string().required("Required").min(6, "Must be at least 6 characters"),
 });
 
-const RegisterForm = ({ setAuthType, closeModal }) => {
+const RegisterForm = ({setAuthType, closeModal}) => {
   const [showPass, setShowPass] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [showConfPass, setShowConfPass] = useState(false);
   const classes = useAuthFormStyles();
-  const { setUser } = useAuthContext();
-  const { notify } = useStateContext();
-  const { register, handleSubmit, reset, errors } = useForm({
-    mode: 'onTouched',
+  const {setUser} = useAuthContext();
+  const {notify} = useStateContext();
+  const {register, handleSubmit, reset, errors} = useForm({
+    mode: "onTouched",
     resolver: yupResolver(validationSchema),
   });
 
-  const [registerUser, { loading }] = useMutation(REGISTER_USER, {
+  const [registerUser, {loading}] = useMutation(REGISTER_USER, {
     onError: (err) => {
       setErrorMsg(getErrorMsg(err));
     },
   });
 
-  const onRegister = ({ username, password, confirmPassword }) => {
-    if (password !== confirmPassword)
-      return setErrorMsg('Both passwords need to match.');
+  const onRegister = ({username, password, confirmPassword}) => {
+    if (password !== confirmPassword) return setErrorMsg("Both passwords need to match.");
 
     registerUser({
-      variables: { username, password },
-      update: (_, { data }) => {
+      variables: {username, password},
+      update: (_, {data}) => {
         setUser(data.register);
-        notify(
-          `Welcome, ${data.register.username}! You've successfully registered.`
-        );
+        notify(`Welcome, ${data.register.username}! You've successfully registered.`);
         reset();
         closeModal();
       },
@@ -82,23 +64,27 @@ const RegisterForm = ({ setAuthType, closeModal }) => {
 
   return (
     <div className={classes.root}>
+      <img src={MpeaceLogo} alt='mpeace-logo' className={classes.titleLogo} />
+      <Typography variant='h5' className={classes.title}>
+        <strong>M</strong>Peace
+      </Typography>
       <form onSubmit={handleSubmit(onRegister)}>
         <div className={classes.inputField}>
           <TextField
             required
             fullWidth
             inputRef={register}
-            name="username"
-            type="text"
-            label="Username"
-            variant="outlined"
-            size="small"
-            error={'username' in errors}
-            helperText={'username' in errors ? errors.username.message : ''}
+            name='username'
+            type='text'
+            label='Username'
+            variant='outlined'
+            size='small'
+            error={"username" in errors}
+            helperText={"username" in errors ? errors.username.message : ""}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
-                  <PersonIcon color="primary" />
+                <InputAdornment position='start'>
+                  <PersonIcon color='primary' />
                 </InputAdornment>
               ),
             }}
@@ -109,31 +95,28 @@ const RegisterForm = ({ setAuthType, closeModal }) => {
             required
             fullWidth
             inputRef={register}
-            name="password"
-            type={showPass ? 'text' : 'password'}
-            label="Password"
-            variant="outlined"
-            size="small"
-            error={'password' in errors}
-            helperText={'password' in errors ? errors.password.message : ''}
+            name='password'
+            type={showPass ? "text" : "password"}
+            label='Password'
+            variant='outlined'
+            size='small'
+            error={"password" in errors}
+            helperText={"password" in errors ? errors.password.message : ""}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPass((prevState) => !prevState)}
-                    size="small"
-                  >
+                <InputAdornment position='end'>
+                  <IconButton onClick={() => setShowPass((prevState) => !prevState)} size='small'>
                     {showPass ? (
-                      <VisibilityOffIcon color="secondary" />
+                      <VisibilityOffIcon color='secondary' />
                     ) : (
-                      <VisibilityIcon color="secondary" />
+                      <VisibilityIcon color='secondary' />
                     )}
                   </IconButton>
                 </InputAdornment>
               ),
               startAdornment: (
-                <InputAdornment position="start">
-                  <LockIcon color="primary" />
+                <InputAdornment position='start'>
+                  <LockIcon color='primary' />
                 </InputAdornment>
               ),
             }}
@@ -144,60 +127,52 @@ const RegisterForm = ({ setAuthType, closeModal }) => {
             required
             fullWidth
             inputRef={register}
-            name="confirmPassword"
-            type={showConfPass ? 'text' : 'password'}
-            label="Confirm Password"
-            variant="outlined"
-            size="small"
-            error={'confirmPassword' in errors}
-            helperText={
-              'confirmPassword' in errors ? errors.confirmPassword.message : ''
-            }
+            name='confirmPassword'
+            type={showConfPass ? "text" : "password"}
+            label='Confirm Password'
+            variant='outlined'
+            size='small'
+            error={"confirmPassword" in errors}
+            helperText={"confirmPassword" in errors ? errors.confirmPassword.message : ""}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowConfPass((prevState) => !prevState)}
-                    size="small"
-                  >
+                <InputAdornment position='end'>
+                  <IconButton onClick={() => setShowConfPass((prevState) => !prevState)} size='small'>
                     {showConfPass ? (
-                      <VisibilityOffIcon color="secondary" />
+                      <VisibilityOffIcon color='secondary' />
                     ) : (
-                      <VisibilityIcon color="secondary" />
+                      <VisibilityIcon color='secondary' />
                     )}
                   </IconButton>
                 </InputAdornment>
               ),
               startAdornment: (
-                <InputAdornment position="start">
-                  <EnhancedEncryptionIcon color="primary" />
+                <InputAdornment position='start'>
+                  <EnhancedEncryptionIcon color='primary' />
                 </InputAdornment>
               ),
             }}
           />
         </div>
         <Button
-          color="primary"
-          variant="contained"
-          size="large"
+          color='primary'
+          variant='contained'
+          size='large'
           fullWidth
           startIcon={<PersonAddIcon />}
-          type="submit"
+          type='submit'
           disabled={loading}
         >
           Sign Up
         </Button>
       </form>
-      <Typography variant="body1" className={classes.footerText}>
-        Already have an account?{' '}
-        <Link onClick={() => setAuthType('login')} className={classes.link}>
+      <Typography variant='body1' className={classes.footerText}>
+        Already have an account?{" "}
+        <Link onClick={() => setAuthType("login")} className={classes.link}>
           Log In
         </Link>
       </Typography>
-      <ErrorMessage
-        errorMsg={errorMsg}
-        clearErrorMsg={() => setErrorMsg(null)}
-      />
+      <ErrorMessage errorMsg={errorMsg} clearErrorMsg={() => setErrorMsg(null)} />
     </div>
   );
 };

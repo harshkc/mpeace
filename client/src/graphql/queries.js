@@ -1,29 +1,55 @@
-import { gql } from '@apollo/client';
-import { AUTHOR_DETAILS, COMMENT_DETAILS, ANSWER_DETAILS } from './fragments';
+import {gql} from "@apollo/client";
 
+export const GET_QUESTIONS = gql`
+  query fetchQuestions(
+    $sortBy: SortByType!
+    $page: Int!
+    $limit: Int!
+    $filterByTag: String
+    $filterBySearch: String
+  ) {
+    getQuestions(
+      sortBy: $sortBy
+      page: $page
+      limit: $limit
+      filterByTag: $filterByTag
+      filterBySearch: $filterBySearch
+    ) {
+      next {
+        page
+      }
+      previous {
+        page
+      }
+      questions {
+        id
+        title
+        body
+        tags
+        points
+        views
+        createdAt
+        updatedAt
+        answerCount
+      }
+    }
+  }
+`;
 
-export const GET_USER = gql`
-  query fetchUser($username: String!) {
-    getUser(username: $username) {
+export const VIEW_QUESTION = gql`
+  query fetchQuestion($quesId: ID!) {
+    viewQuestion(quesId: $quesId) {
       id
-      username
-      role
+      title
+      body
+      tags
+      points
+      views
       createdAt
-      reputation
-      totalQuestions
-      totalAnswers
-      recentQuestions {
-        id
-        title
-        points
-        createdAt
-      }
-      recentAnswers {
-        id
-        title
-        points
-        createdAt
-      }
+      updatedAt
+      acceptedAnswer
+      upvotedBy
+      downvotedBy
     }
   }
 `;
