@@ -100,3 +100,12 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_ALL_TAGS = gql`
+  query {
+    getAllTags {
+      tagName
+      count
+    }
+  }
+`;
