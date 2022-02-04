@@ -169,6 +169,94 @@ export const useQuesListStyles = makeStyles(
   {index: 1}
 );
 
+export const useQuesCardStyles = makeStyles(
+  (theme) => ({
+    root: {
+      borderBottom: "1px solid #dfdfdf",
+      display: "flex",
+      padding: "0.5em 0",
+      borderRadius: 0,
+    },
+    infoWrapper: {
+      width: "10%",
+      padding: "0.4em",
+      display: "flex",
+      flexDirection: "column",
+      textAlign: "center",
+      [theme.breakpoints.down("xs")]: {
+        width: "22%",
+        paddingRight: "0.2em",
+      },
+    },
+    mainText: {
+      fontSize: "1.2em",
+      fontWeight: 500,
+    },
+    title: {
+      fontSize: "1.2em",
+      fontWeight: 500,
+      wordWrap: "anywhere",
+      textDecoration: "none",
+      "&:hover": {
+        filter: "brightness(200%)",
+      },
+      transition: "all 0.4s ease",
+    },
+    innerInfo: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    quesDetails: {
+      paddingLeft: "0.2em",
+      paddingBottom: "0.7em",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      width: "100%",
+    },
+    tagsWrapper: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    tag: {
+      marginRight: "0.5em",
+      marginTop: "0.5em",
+    },
+    bottomWrapper: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+    },
+    byUserWrapper: {
+      display: "flex",
+      alignItems: "center",
+      marginTop: "0.7em",
+    },
+    filledByUser: {
+      display: "flex",
+      alignItems: "center",
+      marginTop: "0.7em",
+      backgroundColor: `${theme.palette.primary.main}10`,
+      padding: "0.4em",
+      borderRadius: 3,
+      border: `1px solid ${theme.palette.primary.main}40`,
+    },
+    homeAvatar: {
+      width: theme.spacing(4),
+      height: theme.spacing(4),
+      marginRight: "0.4em",
+      borderRadius: 2,
+    },
+    quesAnsAvatar: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+      marginRight: "0.4em",
+      borderRadius: 2,
+    },
+  }),
+  {index: 1}
+);
+
 export const useDialogStyles = makeStyles(
   (theme) => ({
     dialogWrapper: {

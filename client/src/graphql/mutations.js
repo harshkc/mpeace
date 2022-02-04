@@ -1,5 +1,10 @@
-import {gql} from "@apollo/client";
-import {QUESTION_DETAILS, LOGGED_USER_DETAILS, ANSWER_DETAILS} from "./fragments";
+import { gql } from '@apollo/client';
+import {
+  QUESTION_DETAILS,
+  LOGGED_USER_DETAILS,
+  COMMENT_DETAILS,
+  ANSWER_DETAILS,
+} from './fragments';
 
 export const REGISTER_USER = gql`
   mutation registerUser($username: String!, $password: String!) {
@@ -29,7 +34,12 @@ export const POST_QUESTION = gql`
 `;
 
 export const EDIT_QUESTION = gql`
-  mutation updateQuestion($quesId: ID!, $title: String!, $body: String!, $tags: [String!]!) {
+  mutation updateQuestion(
+    $quesId: ID!
+    $title: String!
+    $body: String!
+    $tags: [String!]!
+  ) {
     editQuestion(quesId: $quesId, title: $title, body: $body, tags: $tags) {
       ...QuestionDetails
     }
@@ -51,6 +61,30 @@ export const VOTE_QUESTION = gql`
       downvotedBy
       points
     }
+  }
+`;
+
+export const ADD_QUES_COMMENT = gql`
+  mutation postQuesComment($quesId: ID!, $body: String!) {
+    addQuesComment(quesId: $quesId, body: $body) {
+      ...CommentDetails
+    }
+  }
+  ${COMMENT_DETAILS}
+`;
+
+export const EDIT_QUES_COMMENT = gql`
+  mutation updateQuesComment($quesId: ID!, $commentId: ID!, $body: String!) {
+    editQuesComment(quesId: $quesId, commentId: $commentId, body: $body) {
+      ...CommentDetails
+    }
+  }
+  ${COMMENT_DETAILS}
+`;
+
+export const DELETE_QUES_COMMENT = gql`
+  mutation removeQuesComment($quesId: ID!, $commentId: ID!) {
+    deleteQuesComment(quesId: $quesId, commentId: $commentId)
   }
 `;
 
@@ -95,5 +129,39 @@ export const ACCEPT_ANSWER = gql`
       id
       acceptedAnswer
     }
+  }
+`;
+
+export const ADD_ANS_COMMENT = gql`
+  mutation postAnsComment($quesId: ID!, $ansId: ID!, $body: String!) {
+    addAnsComment(quesId: $quesId, ansId: $ansId, body: $body) {
+      ...CommentDetails
+    }
+  }
+  ${COMMENT_DETAILS}
+`;
+
+export const EDIT_ANS_COMMENT = gql`
+  mutation updateAnsComment(
+    $quesId: ID!
+    $ansId: ID!
+    $commentId: ID!
+    $body: String!
+  ) {
+    editAnsComment(
+      quesId: $quesId
+      ansId: $ansId
+      commentId: $commentId
+      body: $body
+    ) {
+      ...CommentDetails
+    }
+  }
+  ${COMMENT_DETAILS}
+`;
+
+export const DELETE_ANS_COMMENT = gql`
+  mutation removeAnsComment($quesId: ID!, $ansId: ID!, $commentId: ID!) {
+    deleteAnsComment(quesId: $quesId, ansId: $ansId, commentId: $commentId)
   }
 `;
