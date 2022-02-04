@@ -1,4 +1,5 @@
 import {gql} from "@apollo/client";
+import {AUTHOR_DETAILS, ANSWER_DETAILS} from "./fragments";
 
 export const GET_QUESTIONS = gql`
   query fetchQuestions(
@@ -23,6 +24,9 @@ export const GET_QUESTIONS = gql`
       }
       questions {
         id
+        author {
+          ...AuthorDetails
+        }
         title
         body
         tags
@@ -34,12 +38,16 @@ export const GET_QUESTIONS = gql`
       }
     }
   }
+  ${AUTHOR_DETAILS}
 `;
 
 export const VIEW_QUESTION = gql`
   query fetchQuestion($quesId: ID!) {
     viewQuestion(quesId: $quesId) {
       id
+      author {
+        ...AuthorDetails
+      }
       title
       body
       tags
@@ -47,9 +55,44 @@ export const VIEW_QUESTION = gql`
       views
       createdAt
       updatedAt
+      answers {
+        ...AnswerDetails
+      }
+      author {
+        ...AuthorDetails
+      }
       acceptedAnswer
       upvotedBy
       downvotedBy
+    }
+  }
+
+  ${ANSWER_DETAILS}
+  ${AUTHOR_DETAILS}
+`;
+
+export const GET_USER = gql`
+  query fetchUser($username: String!) {
+    getUser(username: $username) {
+      id
+      username
+      role
+      createdAt
+      reputation
+      totalQuestions
+      totalAnswers
+      recentQuestions {
+        id
+        title
+        points
+        createdAt
+      }
+      recentAnswers {
+        id
+        title
+        points
+        createdAt
+      }
     }
   }
 `;
