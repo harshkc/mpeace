@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {AUTHOR_DETAILS, ANSWER_DETAILS} from "./fragments";
+import {AUTHOR_DETAILS, COMMENT_DETAILS, ANSWER_DETAILS} from "./fragments";
 
 export const GET_QUESTIONS = gql`
   query fetchQuestions(
@@ -61,6 +61,9 @@ export const VIEW_QUESTION = gql`
       author {
         ...AuthorDetails
       }
+      comments {
+        ...CommentDetails
+      }
       acceptedAnswer
       upvotedBy
       downvotedBy
@@ -68,6 +71,7 @@ export const VIEW_QUESTION = gql`
   }
 
   ${ANSWER_DETAILS}
+  ${COMMENT_DETAILS}
   ${AUTHOR_DETAILS}
 `;
 
