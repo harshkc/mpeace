@@ -65,6 +65,58 @@ export const useNavStyles = makeStyles(
   {index: 1}
 );
 
+export const useMenuStyles = makeStyles(
+  (theme) => ({
+    menuIcon: {
+      marginRight: "6px",
+      fontSize: "1.5em",
+    },
+    menuItem: {
+      padding: "1em",
+    },
+    closeIcon: {
+      boxSizing: "border-box",
+      border: `0.5px solid f1f1f4`,
+      borderRadius: 3,
+    },
+    rootPanel: {
+      position: "sticky",
+      top: "5.5vH",
+      display: "flex",
+      minHeight: "94.5vh",
+    },
+    list: {
+      marginTop: "2em",
+      minWidth: "10vw",
+    },
+    madeByItem: {
+      padding: "0.4em 0.8em 0.2em 0.8em",
+    },
+    userBtn: {
+      textTransform: "none",
+      display: "flex",
+    },
+    avatar: {
+      width: theme.spacing(3.5),
+      height: theme.spacing(3.5),
+      marginRight: "0.4em",
+      borderRadius: 2,
+      [theme.breakpoints.down("xs")]: {
+        marginRight: "0.2em",
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+      },
+    },
+    moreBtn: {
+      padding: "0.2em",
+    },
+    userBtnMob: {
+      padding: "0.3em",
+    },
+  }),
+  {index: 1}
+);
+
 export const useQuesListStyles = makeStyles(
   (theme) => ({
     root: {
@@ -218,7 +270,6 @@ export const useTagsPageStyles = makeStyles(
   }),
   {index: 1}
 );
-
 
 export const useAskQuesPageStyles = makeStyles(
   (theme) => ({
