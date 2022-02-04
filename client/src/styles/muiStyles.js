@@ -169,6 +169,36 @@ export const useQuesListStyles = makeStyles(
   {index: 1}
 );
 
+export const useRightSidePanelStyles = makeStyles(
+  (theme) => ({
+    rootPanel: {
+      position: "sticky",
+      display: "flex",
+      minHeight: "10vh",
+      marginTop: "1em",
+      top: "5.5vH",
+    },
+    content: {
+      paddingTop: 0,
+      marginTop: "1em",
+    },
+    tagsColumn: {
+      border: `1px solid ${theme.palette.primary.main}50`,
+      borderRadius: 4,
+      padding: "0.8em",
+      backgroundColor: `${theme.palette.primary.main}08`,
+    },
+    tagsWrapper: {
+      marginTop: "1em",
+      display: "grid",
+      width: "100%",
+      gridTemplateColumns: "repeat(2, minmax(130px, 1fr))",
+      gridGap: "8px",
+    },
+  }),
+  {index: 1}
+);
+
 export const useQuesCardStyles = makeStyles(
   (theme) => ({
     root: {
@@ -354,6 +384,123 @@ export const useTagsPageStyles = makeStyles(
     },
     tag: {
       marginBottom: "0.9em",
+    },
+  }),
+  {index: 1}
+);
+
+export const useQuesPageStyles = makeStyles(
+  (theme) => ({
+    root: {
+      width: "100%",
+      paddingLeft: "0.7em",
+      marginTop: "1em",
+      [theme.breakpoints.down("xs")]: {
+        paddingRight: "0.7em",
+      },
+    },
+    titleWrapper: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      paddingBottom: "0.4em",
+      [theme.breakpoints.down("xs")]: {
+        flexWrap: "wrap",
+      },
+    },
+    quesInfo: {
+      display: "flex",
+      paddingBottom: "0.8em",
+    },
+    content: {
+      paddingTop: "0.5em",
+      width: "100%",
+      paddingBottom: "1em",
+    },
+    quesAnsWrapper: {
+      display: "flex",
+      marginBottom: "1em",
+    },
+    voteColumn: {
+      display: "flex",
+      flexDirection: "column",
+      width: 30,
+      alignItems: "center",
+    },
+    quesBody: {
+      padding: "0.6em 1em",
+      paddingBottom: 0,
+      width: "100%",
+      [theme.breakpoints.down("xs")]: {
+        paddingRight: "0",
+      },
+    },
+    tag: {
+      marginRight: "0.5em",
+      marginTop: "0.5em",
+    },
+    tagsWrapper: {
+      display: "flex",
+      flexWrap: "wrap",
+      marginTop: "1em",
+    },
+    bottomWrapper: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      marginTop: "1.4em",
+      marginBottom: "0.8em",
+    },
+    bottomBtns: {
+      padding: "0.15em",
+    },
+    commentWrapper: {
+      padding: "0.5em 0.2em",
+    },
+    commentBtns: {
+      padding: "0 0.1em",
+      minWidth: "3em",
+    },
+    smallForm: {
+      marginTop: "1em",
+    },
+    submitCancelBtns: {
+      display: "flex",
+      justifyContent: "flex-start",
+      marginTop: "0.3em",
+    },
+    answersWrapper: {
+      marginTop: "1em",
+    },
+    answerHeader: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "0.5em",
+      padding: "0 0.5em",
+    },
+    acceptIcon: {
+      color: "#aa9aaa",
+      fontSize: 32,
+    },
+    checkedAcceptIcon: {
+      color: "#2e8b57",
+      fontSize: 32,
+    },
+    answerWrapper: {
+      marginBottom: "0.5em",
+    },
+    answerForm: {
+      marginTop: "2em",
+    },
+    footerText: {
+      marginTop: "1em",
+      marginBottom: "1em",
+      display: "flex",
+      alignItems: "flex-start",
+    },
+    footerTag: {
+      marginRight: "0.5em",
     },
   }),
   {index: 1}
