@@ -506,6 +506,108 @@ export const useQuesPageStyles = makeStyles(
   {index: 1}
 );
 
+export const useUserPageStyles = makeStyles(
+  (theme) => ({
+    root: {
+      marginTop: "3em",
+      marginLeft: "0",
+      [theme.breakpoints.up("sm")]: {
+        marginLeft: "1em",
+      },
+      padding: "0em 1.4em",
+      width: "100%",
+      display: "flex",
+      [theme.breakpoints.down("xs")]: {
+        flexDirection: "column",
+        padding: "0em 0.9em",
+      },
+    },
+    userCard: {
+      backgroundColor: `${theme.palette.primary.main}15`,
+      padding: "1.6em",
+      height: "12.5em",
+      textAlign: "center",
+      [theme.breakpoints.down("xs")]: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "9.5em",
+        marginBottom: "0.5em",
+      },
+    },
+    avatar: {
+      width: theme.spacing(21),
+      height: theme.spacing(21),
+      borderRadius: 3,
+      [theme.breakpoints.down("xs")]: {
+        width: theme.spacing(15),
+        height: theme.spacing(15),
+      },
+    },
+    cardText: {
+      marginTop: "0.5em",
+    },
+    infoCard: {
+      paddingLeft: "2em",
+      paddingRight: "2em",
+      width: "100%",
+      [theme.breakpoints.down("xs")]: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+    },
+    userInfo: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-end",
+    },
+    bigText: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "1.5em",
+      },
+    },
+    smallText: {
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "0.8em",
+      },
+    },
+    statsBar: {
+      textAlign: "center",
+      display: "flex",
+      alignItems: "center",
+    },
+    recentActivity: {
+      marginTop: "1em",
+    },
+    recentQuesAns: {
+      display: "flex",
+      padding: "0.5em 0",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    votesTitleWrapper: {
+      display: "flex",
+      alignItems: "center",
+    },
+    votes: {
+      padding: "0.2em 0.5em",
+      border: "1px solid #d3d3d3",
+      marginRight: "0.7em",
+      [theme.breakpoints.down("xs")]: {
+        marginRight: "0.5em",
+      },
+    },
+    title: {
+      textDecoration: "none",
+      "&:hover": {
+        filter: "brightness(200%)",
+      },
+      transition: "all 0.4s ease",
+    },
+  }),
+  {index: 1}
+);
+
 export const useAskQuesPageStyles = makeStyles(
   (theme) => ({
     root: {

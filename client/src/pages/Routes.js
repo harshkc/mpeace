@@ -5,6 +5,7 @@ import QuesListPage from "./QuesListPage";
 import AllTagsPage from "./AllTagsPage";
 import QuestionPage from "./QuestionPage";
 import AskQuestionPage from "./AskQuestionPage";
+import UserPage from "./UserPage";
 import NotFoundPage from "./NotFoundPage";
 import {useAuthContext} from "../context/auth";
 
@@ -36,6 +37,10 @@ const Routes = () => {
           <Route exact path='/tags'>
             <NavMenuDesktop user={user} />
             <AllTagsPage />
+          </Route>
+          <Route exact path='/user/:username'>
+            <NavMenuDesktop user={user} />
+            <UserPage />
           </Route>
           <Route exact path='/questions/:quesId'>
             <NavMenuDesktop user={user} />
