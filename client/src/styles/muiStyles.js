@@ -70,6 +70,9 @@ export const useMenuStyles = makeStyles(
     menuIcon: {
       marginRight: "6px",
       fontSize: "1.5em",
+      [theme.breakpoints.down("xs")]: {
+        padding: "0.5em 0.2em",
+      },
     },
     menuItem: {
       padding: "1em",
@@ -432,8 +435,7 @@ export const useQuesPageStyles = makeStyles(
   (theme) => ({
     root: {
       width: "100%",
-      paddingLeft: "0.7em",
-      marginTop: "1em",
+      margin: "1em 1em 0 1em",
       [theme.breakpoints.down("xs")]: {
         paddingRight: "0.7em",
       },
@@ -651,8 +653,8 @@ export const useAskQuesPageStyles = makeStyles(
   (theme) => ({
     root: {
       width: "100%",
-      marginTop: "1em",
-      padding: "0.4em 1em",
+      margin: "1em 1em 0 1em",
+      padding: "0.4em 0.4em",
     },
     quesForm: {
       paddingTop: "0.8em",
