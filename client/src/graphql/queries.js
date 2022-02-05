@@ -109,3 +109,13 @@ export const GET_ALL_TAGS = gql`
     }
   }
 `;
+
+export const GET_ALL_USERS = gql`
+  query {
+    getAllUsers {
+      id
+      username
+      createdAt
+    }
+  }
+`;
