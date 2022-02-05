@@ -3,6 +3,7 @@ import NavMenuDesktop from "../components/NavMenuDesktop";
 import RightSidePanel from "../components/RightSidePanel";
 import QuesListPage from "./QuesListPage";
 import AllTagsPage from "./AllTagsPage";
+import AllUsersPage from "./AllUsersPage";
 import QuestionPage from "./QuestionPage";
 import AskQuestionPage from "./AskQuestionPage";
 import UserPage from "./UserPage";
@@ -37,6 +38,10 @@ const Routes = () => {
           <Route exact path='/tags'>
             <NavMenuDesktop user={user} />
             <AllTagsPage />
+          </Route>
+          <Route exact path='/users'>
+            <NavMenuDesktop user={user} />
+            <AllUsersPage />
           </Route>
           <Route exact path='/user/:username'>
             <NavMenuDesktop user={user} />

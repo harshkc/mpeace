@@ -389,6 +389,45 @@ export const useTagsPageStyles = makeStyles(
   {index: 1}
 );
 
+export const useUsersPageStyles = makeStyles(
+  (theme) => ({
+    root: {
+      marginTop: "2em",
+      marginLeft: "0",
+      [theme.breakpoints.up("sm")]: {
+        marginLeft: "2em",
+      },
+      padding: "0.4em 0.7em",
+      width: "100%",
+    },
+    filterInput: {
+      marginTop: "1.2em",
+      [theme.breakpoints.down("xs")]: {
+        width: "100%",
+      },
+    },
+    usersWrapper: {
+      marginTop: "2em",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+      gridGap: "14px",
+    },
+    userBox: {
+      display: "flex",
+      border: "1px solid #d3d3d3",
+      padding: "0.7em",
+      alignItems: "center",
+    },
+    avatar: {
+      width: theme.spacing(6),
+      height: theme.spacing(6),
+      marginRight: "0.6em",
+      borderRadius: 2,
+    },
+  }),
+  {index: 1}
+);
+
 export const useQuesPageStyles = makeStyles(
   (theme) => ({
     root: {
