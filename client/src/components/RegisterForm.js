@@ -68,6 +68,7 @@ const RegisterForm = ({setAuthType, closeModal}) => {
       <Typography variant='h5' className={classes.title}>
         <strong>M</strong>Peace
       </Typography>
+      <p className={classes.subTitle}>Anonymously Ask and Answer</p>
       <form onSubmit={handleSubmit(onRegister)}>
         <div className={classes.inputField}>
           <TextField
