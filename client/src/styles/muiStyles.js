@@ -335,8 +335,12 @@ export const useAuthFormStyles = makeStyles(
     },
     title: {
       fontSize: "1.5em",
-      marginBottom: "1em",
       textAlign: "center",
+    },
+    subTitle: {
+      textAlign: "center",
+      marginBottom: "1em",
+      color: "grey",
     },
     footerText: {
       marginTop: "1em",

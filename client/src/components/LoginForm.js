@@ -58,6 +58,7 @@ const LoginForm = ({setAuthType, closeModal}) => {
       <Typography variant='h5' className={classes.title}>
         <strong>M</strong>Peace
       </Typography>
+      <p className={classes.subTitle}>Anonomyously Ask and Answer</p>
       <form onSubmit={handleSubmit(onLogin)}>
         <div className={classes.inputField}>
           <TextField
@@ -121,6 +122,18 @@ const LoginForm = ({setAuthType, closeModal}) => {
           disabled={loading}
         >
           Log In
+        </Button>
+        <Button
+          color='secondary'
+          variant='contained'
+          size='large'
+          fullWidth
+          startIcon={<ExitToAppIcon />}
+          onClick={() => onLogin({username: "expo", password: "test@1234"})}
+          disabled={loading}
+          style={{marginTop: "0.5rem"}}
+        >
+          Test User
         </Button>
       </form>
       <Typography variant='body1' className={classes.footerText}>
