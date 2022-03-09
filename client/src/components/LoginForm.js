@@ -58,7 +58,7 @@ const LoginForm = ({setAuthType, closeModal}) => {
       <Typography variant='h5' className={classes.title}>
         <strong>M</strong>Peace
       </Typography>
-      <p className={classes.subTitle}>Anonomyously Ask and Answer</p>
+      <p className={classes.subTitle}>Anonymously Ask and Answer</p>
       <form onSubmit={handleSubmit(onLogin)}>
         <div className={classes.inputField}>
           <TextField
