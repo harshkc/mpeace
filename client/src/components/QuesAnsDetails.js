@@ -53,7 +53,6 @@ const QuesAnsDetails = ({
     editQuesAns(editedAnswerBody, id);
     closeEditInput();
   };
-  console.log(author.id === user.id);
   return (
     <div className={classes.quesAnsWrapper}>
       <div className={classes.voteColumn}>
@@ -62,7 +61,7 @@ const QuesAnsDetails = ({
             checked={user ? upvotedBy.includes(user.id) : false}
             user={user}
             handleUpvote={upvoteQuesAns}
-            isDisabled={author.id === user.id}
+            isDisabled={author?.id === user?.id}
           />
         ) : (
           <AuthFormModal buttonType='upvote' />
@@ -75,7 +74,7 @@ const QuesAnsDetails = ({
             checked={user ? downvotedBy.includes(user.id) : false}
             user={user}
             handleDownvote={downvoteQuesAns}
-            isDisabled={author.id === user.id}
+            isDisabled={author?.id === user?.id}
           />
         ) : (
           <AuthFormModal buttonType='downvote' />
