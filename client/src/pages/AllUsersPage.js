@@ -58,6 +58,10 @@ const AllUsersPage = () => {
                   <Link component={RouterLink} to={`/user/${u.username}`}>
                     <Typography variant='body2'>{u.username}</Typography>
                   </Link>
+                  <Typography variant='caption'>
+                    <strong style={{color: "gray"}}>{u.reputation} Rep</strong>
+                  </Typography>
+                  <br />
                   <Typography variant='caption'>created {formatDateAgo(u.createdAt)} ago</Typography>
                 </div>
               </div>
