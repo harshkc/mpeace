@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const {gql} = require("apollo-server");
 
 module.exports = gql`
   enum RoleType {
@@ -62,6 +62,7 @@ module.exports = gql`
   type UserList {
     id: ID!
     username: String!
+    reputation: Int!
     createdAt: DateTime!
   }
 
@@ -157,12 +158,7 @@ module.exports = gql`
 
     postQuestion(title: String!, body: String!, tags: [String!]!): Question!
     deleteQuestion(quesId: ID!): ID!
-    editQuestion(
-      quesId: ID!
-      title: String!
-      body: String!
-      tags: [String!]!
-    ): Question!
+    editQuestion(quesId: ID!, title: String!, body: String!, tags: [String!]!): Question!
     voteQuestion(quesId: ID!, voteType: VoteType!): Question!
 
     postAnswer(quesId: ID!, body: String!): [Answer!]!
@@ -177,11 +173,6 @@ module.exports = gql`
 
     addAnsComment(quesId: ID!, ansId: ID!, body: String!): [Comment!]!
     deleteAnsComment(quesId: ID!, ansId: ID!, commentId: ID!): ID!
-    editAnsComment(
-      quesId: ID!
-      ansId: ID!
-      commentId: ID!
-      body: String!
-    ): [Comment!]!
+    editAnsComment(quesId: ID!, ansId: ID!, commentId: ID!, body: String!): [Comment!]!
   }
 `;

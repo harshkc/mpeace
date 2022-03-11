@@ -1,38 +1,38 @@
-const User = require('../../models/user');
-const Question = require('../../models/question');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { registerValidator, loginValidator } = require('../../utils/validators');
-const { UserInputError } = require('apollo-server');
-const { SECRET } = require('../../utils/config');
+const User = require("../../models/user");
+const Question = require("../../models/question");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const {registerValidator, loginValidator} = require("../../utils/validators");
+const {UserInputError} = require("apollo-server");
+const {SECRET} = require("../../utils/config");
 
 module.exports = {
   Query: {
     getUser: async (_, args) => {
-      const { username } = args;
+      const {username} = args;
 
-      if (username.trim() === '') {
-        throw new UserInputError('Username must be provided.');
+      if (username.trim() === "") {
+        throw new UserInputError("Username must be provided.");
       }
 
       const user = await User.findOne({
-        username: { $regex: new RegExp('^' + username + '$', 'i') },
+        username: {$regex: new RegExp("^" + username + "$", "i")},
       });
 
       if (!user) {
         throw new UserInputError(`User '${username}' does not exist.`);
       }
 
-      const recentQuestions = await Question.find({ author: user._id })
-        .sort({ createdAt: -1 })
-        .select('id title points createdAt')
+      const recentQuestions = await Question.find({author: user._id})
+        .sort({createdAt: -1})
+        .select("id title points createdAt")
         .limit(5);
 
       const recentAnswers = await Question.find({
-        answers: { $elemMatch: { author: user._id } },
+        answers: {$elemMatch: {author: user._id}},
       })
-        .sort({ createdAt: -1 })
-        .select('id title points createdAt')
+        .sort({createdAt: -1})
+        .select("id title points createdAt")
         .limit(5);
 
       return {
@@ -47,21 +47,28 @@ module.exports = {
       };
     },
     getAllUsers: async () => {
-      const allUsers = await User.find({}).select('username createdAt');
+      let allUsers = await User.find({}).select("username questions answers createdAt");
+      allUsers.forEach((user) => {
+        user.reputation =
+          user.questions.reduce((sum, q) => sum + q.rep, 0) +
+          user.answers.reduce((sum, a) => sum + a.rep, 0) +
+          1;
+      });
+      allUsers = allUsers.sort((a, b) => b.reputation - a.reputation);
       return allUsers;
     },
   },
   Mutation: {
     register: async (_, args) => {
-      const { username, password } = args;
-      const { errors, valid } = registerValidator(username, password);
+      const {username, password} = args;
+      const {errors, valid} = registerValidator(username, password);
 
       if (!valid) {
-        throw new UserInputError(Object.values(errors)[0], { errors });
+        throw new UserInputError(Object.values(errors)[0], {errors});
       }
 
       const existingUser = await User.findOne({
-        username: { $regex: new RegExp('^' + username + '$', 'i') },
+        username: {$regex: new RegExp("^" + username + "$", "i")},
       });
 
       if (existingUser) {
@@ -93,28 +100,25 @@ module.exports = {
     },
 
     login: async (_, args) => {
-      const { username, password } = args;
-      const { errors, valid } = loginValidator(username, password);
+      const {username, password} = args;
+      const {errors, valid} = loginValidator(username, password);
 
       if (!valid) {
-        throw new UserInputError(Object.values(errors)[0], { errors });
+        throw new UserInputError(Object.values(errors)[0], {errors});
       }
 
       const user = await User.findOne({
-        username: { $regex: new RegExp('^' + username + '$', 'i') },
+        username: {$regex: new RegExp("^" + username + "$", "i")},
       });
 
       if (!user) {
         throw new UserInputError(`User: '${username}' not found.`);
       }
 
-      const credentialsValid = await bcrypt.compare(
-        password,
-        user.passwordHash
-      );
+      const credentialsValid = await bcrypt.compare(password, user.passwordHash);
 
       if (!credentialsValid) {
-        throw new UserInputError('Invalid credentials.');
+        throw new UserInputError("Invalid credentials.");
       }
 
       const token = jwt.sign(

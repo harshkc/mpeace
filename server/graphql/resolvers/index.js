@@ -1,10 +1,10 @@
-const userResolvers = require('./user');
-const questionResolvers = require('./question');
-const answerResolvers = require('./answer');
-const quesCommentResolvers = require('./quesComment');
-const ansCommentResolvers = require('./ansComment');
-const tagResolvers = require('./tag');
-const { GraphQLDateTime } = require('graphql-iso-date');
+const userResolvers = require("./user");
+const questionResolvers = require("./question");
+const answerResolvers = require("./answer");
+const quesCommentResolvers = require("./quesComment");
+const ansCommentResolvers = require("./ansComment");
+const tagResolvers = require("./tag");
+const {GraphQLDateTime} = require("graphql-iso-date");
 
 module.exports = {
   Query: {
@@ -32,19 +32,19 @@ module.exports = {
     totalAnswers: (parent) => parent.answers.length,
   },
   RoleType: {
-    USER: 'user',
-    ADMIN: 'admin',
+    USER: "user",
+    ADMIN: "admin",
   },
   SortByType: {
-    HOT: 'hot',
-    VOTES: 'votes',
-    VIEWS: 'views',
-    NEWEST: 'newest',
-    OLDEST: 'oldest',
+    HOT: "hot",
+    VOTES: "votes",
+    VIEWS: "views",
+    NEWEST: "newest",
+    OLDEST: "oldest",
   },
   VoteType: {
-    UPVOTE: 'upvote',
-    DOWNVOTE: 'downvote',
+    UPVOTE: "upvote",
+    DOWNVOTE: "downvote",
   },
   DateTime: GraphQLDateTime,
 };

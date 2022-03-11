@@ -3,7 +3,6 @@ import {setContext} from "apollo-link-context";
 import storage from "./utils/localStorage";
 
 const url = process.env.REACT_APP_API_URL;
-console.log(url);
 const httpLink = new HttpLink({
   uri: url,
 });
