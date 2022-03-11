@@ -54,6 +54,7 @@ module.exports = {
           user.answers.reduce((sum, a) => sum + a.rep, 0) +
           1;
       });
+      allUsers = allUsers.sort((a, b) => b.reputation - a.reputation);
       return allUsers;
     },
   },
